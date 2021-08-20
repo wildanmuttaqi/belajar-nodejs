@@ -21,9 +21,9 @@ services:
         working_dir: /home/node/app
         environment:
             - TZ=Asia/Jakarta
-            - NODE_ENV=dev
         volumes:
             - ./backend:/home/node/app
+        command: nodemon -L ./bin/www
         depends_on:
             - mysql
         links: 
@@ -50,6 +50,8 @@ services:
             - covid19-db:/var/lib/mysql
             - ./docker/mysql/conf.d:/etc/mysql/conf.d
             - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        ports: 
+            - 3306:3306
 volumes: 
     covid19-db:
         external: true
