@@ -10,7 +10,7 @@ var { idSchema, createSchema, changePasswordSchema } = require('../validators/Us
  * @apiGroup API
  */
 exports.find = async (req, res) => {
-  User = await Models.user.findAll({
+  let User = await Models.user.findAll({
     attributes: ['id', 'full_name', 'email', 'phone_number', 'createdAt', 'updatedAt'],
     raw: true
   })
@@ -45,11 +45,11 @@ exports.register = async (req, res) => {
   }
 
   try {
-    let User = {};
-    User = await Models.user.findOne({
+    let User = await Models.user.findOne({
       where:{
         email: body.email
-      }
+      },
+      raw: true
     }).catch((error) => {
       throw error;
     })
@@ -95,20 +95,30 @@ exports.changePassword = async (req, res) => {
     return;
   }
 
-  console.log(body.password)
   try {
-    let User = {}
-    User = await Models.user.update({
-      password: body.password
-    }, {
+    let User = await Models.user.findOne({
       where: {
         id: body.id
-      }
-    }).catch((error) => {
-      throw error;
+      },
+      raw: true
     })
+    if(User){
+      await Models.user.update({
+        password: body.password
+      }, {
+        where: {
+          id: body.id
+        }
+      }).catch((error) => {
+        throw error;
+      })
+      delete User.password;
+      res.data = User
+      res.msg = "password berhasil diubah";
+    } else {
+      throw new Error('user tidak ada')
+    }
 
-    res.msg = "password berhasil diubah";
   } catch (error) {
     res.msg = error.message;
     res.data = error;
