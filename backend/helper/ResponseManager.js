@@ -1,13 +1,13 @@
 exports.SendResponse = (res) => {
-    if(!res.code) res.code = 200;
-    if(!res.data) res.data = []
+  if(!res.code) res.code = 200;
+  if(!res.data) res.data = []
 
-    var Response = {
-      statusCode: res.code,
-      message: res.msg,
-      data: res.data,
-    }
-    res.status(res.code).send(Response);
+  var Response = {
+    statusCode: res.code,
+    message: res.msg,
+    data: res.data,
+  }
+  res.status(res.code).send(Response);
 }
 
 exports.SendValidation = (res) => {
