@@ -49,4 +49,4 @@ jobs:
       - name: Deploy backend to heroku
         # run: git subtree push --prefix server heroku master --force
         # run: git push --force heroku `git subtree split --prefix backend HEAD`:master
-        run: git push heroku git subtree split --prefix backend master:master --force
+        run: git push heroku $(git subtree split --prefix dist master:master) --force
