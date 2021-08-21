@@ -6,7 +6,7 @@ on:
     path:
       - backend/**
   pull_request:
-    beanches: [ master ]
+    branches: [ master ]
 
 jobs:
   build:
