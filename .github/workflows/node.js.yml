@@ -3,12 +3,6 @@ name: Node.js CI/CD
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-defaults:
-  run:
-    working-directory: backend
 
 jobs:
   build:
@@ -36,24 +30,25 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    # steps:
-      # - uses: actions/checkout@v2
-      # - uses: akhileshns/heroku-deploy@v3.12.12
-      #   with:
-      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-      #     heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-      #     heroku_email: "danmuttaqi@gmail.com"
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: "danmuttaqi@gmail.com"
+          appDir: "backend"
+    # steps:
+    #   - name: Checkout
+    #     uses: actions/checkout@v2
 
-      - name: Add remote origin
-        run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+    #   - name: Add remote origin
+    #     run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
 
-      - name: View remotes
-        run: git remote
+    #   - name: View remotes
+    #     run: git remote
 
-      - name: Deploy backend to heroku
-        # run: git subtree push --prefix server heroku master --force
-        # run: git push --force heroku `git subtree split --prefix backend HEAD`:master
-        run: git push heroku `git subtree split --prefix backend master`:master --force
+    #   - name: Deploy backend to heroku
+    #     # run: git subtree push --prefix server heroku master --force
+    #     # run: git push --force heroku `git subtree split --prefix backend HEAD`:master
+    #     run: git push heroku `git subtree split --prefix backend master`:master --force
