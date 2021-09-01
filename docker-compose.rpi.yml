@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+    proxy:
+        image: nginx:1.14-alpine
+        container_name: proxy-c19
+        environment:
+            - TZ=Asia/Jakarta
+        volumes:
+            - ./docker/nginx/nginx.conf/:/etc/nginx/nginx.conf
+            - ./docker/nginx/conf.d:/etc/nginx/conf.d
+        ports:
+            - 80:80
+        depends_on:
+            - node
+        links:
+            - node
+    node:
+        build:
+            context: ./docker
+        container_name: node-c19
+        working_dir: /home/node/app
+        environment:
+            - TZ=Asia/Jakarta
+        volumes:
+            - ./backend:/home/node/app
+            - /home/node/app/node_modules
+        command: npx nodemon -L npm start
+        depends_on:
+            - mysql
+        links:
+            - mysql
+    # mongodb:
+    #     image: mongo:4.1.3
+    #     ports:
+    #         - "27017:27017"
+    #     volumes:
+    #         - mongodb:/data/db/
+    # redis:
+    #     image: redis:4.0.11
+    #     ports:
+    #       - "6379:6379"
+    #     volumes:
+    #       - redis:/data/
+    mysql:
+        image: hypriot/rpi-mysql
+        container_name: mysql-c19
+        environment:
+            MYSQL_ROOT_PASSWORD: covid19#
+            MYSQL_DATABASE: db_covid19
+        volumes:
+            - covid19-db:/var/lib/mysql
+            - ./docker/mysql/conf.d:/etc/mysql/conf.d
+            - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        ports:
+            - 3306:3306
+volumes:
+    covid19-db:
+        external: true
+#     mongodb:
+#     redis:
