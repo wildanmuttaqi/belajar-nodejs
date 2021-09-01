@@ -23,7 +23,7 @@ services:
         volumes:
             - ./backend:/home/node/app
             - /home/node/app/node_modules
-        command: /home/node/app/node_modules/.bin/apidoc -i ./controllers -o ./docs
+        # command: /home/node/app/node_modules/.bin/apidoc -i ./controllers -o ./docs
         depends_on:
             - mysql
         links:
