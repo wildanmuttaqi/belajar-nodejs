@@ -1,8 +1,7 @@
 FROM node:14-alpine
 
 COPY backend/package.json .
-RUN npm i bcrypt
-RUN npm install --quiet
+RUN npm install -g --quiet
 COPY . .
 
 CMD ["npm","run","apidocs"]
