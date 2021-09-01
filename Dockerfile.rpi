@@ -1,11 +1,8 @@
-FROM arm32v7/node
+FROM hypriot/rpi-iojs:1.4.1
 
+ADD backend/ ./
 WORKDIR /home/node/app
-COPY backend/package*.json ./
-
-RUN npm install -g
-RUN chmod +x /home/node/app
-COPY . .
+RUN npm install
 EXPOSE 3000
 
 CMD ["npm","run","apidocs"]
