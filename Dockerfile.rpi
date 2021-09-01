@@ -4,9 +4,8 @@ WORKDIR /home/node/app
 COPY backend/package*.json ./
 
 RUN npm install -g
+RUN chmod +x /home/node/app
 COPY . .
 EXPOSE 3000
 
 CMD ["npm","run","apidocs"]
-
-RUN chmod +x /home/node/app/node_modules
