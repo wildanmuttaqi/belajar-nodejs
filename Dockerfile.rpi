@@ -2,7 +2,7 @@ FROM arm32v7/node
 
 WORKDIR /home/node/app
 COPY backend/package*.json ./
-RUN npm install
+RUN npm install -g
 COPY . .
 EXPOSE 3000
 
