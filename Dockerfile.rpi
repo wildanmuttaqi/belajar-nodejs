@@ -2,7 +2,13 @@ FROM arm32v7/node
 
 WORKDIR /home/node/app
 COPY backend/package*.json ./
+
 RUN npm install -g
+RUN mkdir ~/.npm-global
+RUN npm config set prefix '~/.npm-global'
+RUN export PATH=~/.npm-global/bin:$PATH
+RUN source ~/.profile
+
 COPY . .
 EXPOSE 3000
 
