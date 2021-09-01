@@ -22,7 +22,7 @@ services:
             - TZ=Asia/Jakarta
         volumes:
             - ./backend:/home/node/app
-        command: npx nodemon -L npm start
+        command: npx nodemon -L ./bin/www
         depends_on:
             - db
         links:
