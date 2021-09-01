@@ -18,13 +18,12 @@ services:
         build:
             context: ./docker
         container_name: node-c19
+        working_dir: /home/node/app
         environment:
             - TZ=Asia/Jakarta
         volumes:
             - ./backend:/home/node/app
-            - /home/node/app/node_modules
-        # command: /home/node/app/node_modules/.bin/apidoc -i ./controllers -o ./docs
-        command: npm run apidocs
+        command: npx nodemon -L npm start
         depends_on:
             - db
         links:
