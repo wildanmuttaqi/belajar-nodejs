@@ -7,4 +7,4 @@ RUN npm install
 RUN npm run apidocs
 COPY . .
 
-CMD ["/home/node/app/node_modules/.bin/nodemon","-L","./bin/www"]
+CMD ["npx","nodemon","-L","./bin/www"]
