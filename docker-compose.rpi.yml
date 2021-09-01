@@ -17,6 +17,7 @@ services:
     node:
         build:
             context: .
+            dockerfile: Dockerfile.rpi
         container_name: node-c19
         environment:
             - TZ=Asia/Jakarta
