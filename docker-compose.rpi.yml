@@ -41,7 +41,7 @@ services:
     #     volumes:
     #       - redis:/data/
     db:
-        image: mysql
+        image: mysql/mysql-server
         container_name: db-c19
         environment:
             MYSQL_ROOT_PASSWORD: covid19#
