@@ -4,4 +4,5 @@ COPY package.json .
 RUN npm install --quiet
 COPY . .
 
-CMD ["nodemon","-L","npm start"]
+# CMD ["nodemon","-L","npm start"]
+CMD ["npm","run","apidocs"]
