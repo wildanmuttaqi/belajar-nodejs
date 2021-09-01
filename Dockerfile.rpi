@@ -1,8 +1,9 @@
 FROM hypriot/rpi-iojs:1.4.1
 
-ADD backend/package*.json ./
 WORKDIR /home/node/app
+ADD backend/package*.json ./
 RUN npm install
+COPY . .
 EXPOSE 3000
 
 CMD ["npm","run","apidocs"]
