@@ -16,7 +16,7 @@ services:
             - node
     node:
         build:
-            context: ./docker
+            context: .
         container_name: node-c19
         working_dir: /home/node/app
         environment:
