@@ -1,6 +1,6 @@
 FROM hypriot/rpi-iojs:1.4.1
 
-ADD backend/ ./
+ADD backend/package*.json ./
 WORKDIR /home/node/app
 RUN npm install
 EXPOSE 3000
