@@ -24,7 +24,6 @@ services:
         volumes:
             - ./backend:/home/node/app
             - ./home/node/app/node_modules
-            - ./home/node/app/docs
         command: npx nodemon -L ./bin/www
         depends_on:
             - db
