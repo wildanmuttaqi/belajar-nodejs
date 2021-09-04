@@ -42,7 +42,7 @@ services:
     #     volumes:
     #       - redis:/data/
     db:
-        image: mariadb:10.3
+        image: hypriot/rpi-mysql
         container_name: db-c19
         environment:
             MYSQL_ROOT_PASSWORD: covid19#
@@ -50,7 +50,6 @@ services:
         volumes:
             - covid19-db:/var/lib/mysql
             - ./docker/mysql/conf.d:/etc/mysql/conf.d
-            - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
         ports:
             - 3306:3306
 volumes:
