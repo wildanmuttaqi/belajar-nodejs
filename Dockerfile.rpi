@@ -4,6 +4,6 @@ WORKDIR /home/node/app
 
 ADD backend/package*.json ./
 RUN npm install
-RUN nom run apidocs
+RUN npm run apidocs
 
 EXPOSE 3000
