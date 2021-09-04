@@ -43,7 +43,7 @@ services:
     #     volumes:
     #       - redis:/data/
     db:
-        image: jsurf/rpi-mariadb
+        image: mysql/mysql-server
         container_name: db-c19
         environment:
             MYSQL_ROOT_PASSWORD: covid19#
