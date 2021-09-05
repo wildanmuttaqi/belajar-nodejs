@@ -42,7 +42,7 @@ services:
     #     volumes:
     #       - redis:/data/
     db:
-        image: hypriot/rpi-mysql
+        image: tobi312/rpi-mariadb:10.3
         container_name: db-c19
         environment:
             MYSQL_ROOT_PASSWORD: covid19#
