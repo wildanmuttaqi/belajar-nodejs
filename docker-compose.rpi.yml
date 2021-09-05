@@ -21,6 +21,7 @@ services:
         container_name: node-c19
         environment:
             - TZ=Asia/Jakarta
+            - NODE_ENV=production
         volumes:
             - ./backend:/home/node/app
             - ./home/node/app/node_modules/
@@ -41,17 +42,17 @@ services:
     #       - "6379:6379"
     #     volumes:
     #       - redis:/data/
-    db:
-        image: tobi312/rpi-mariadb:10.3
-        container_name: db-c19
-        environment:
-            MYSQL_ROOT_PASSWORD: covid19#
-            MYSQL_DATABASE: db_covid19
-        volumes:
-            - covid19-db:/var/lib/mysql
-            - ./docker/mysql/conf.d:/etc/mysql/conf.d
-        ports:
-            - 3306:3306
+    # db:
+    #     image: tobi312/rpi-mariadb:10.3
+    #     container_name: db-c19
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: covid19#
+    #         MYSQL_DATABASE: db_covid19
+    #     volumes:
+    #         - covid19-db:/var/lib/mysql
+    #         - ./docker/mysql/conf.d:/etc/mysql/conf.d
+    #     ports:
+    #         - 3306:3306
 volumes:
     covid19-db:
         external: true
