@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
   } catch (error) {
     res.msg = error.message;
     res.data = error;
-    res.code = 401;
+    res.code = 400;
     rm.SendResponse(res);
   }
 }
