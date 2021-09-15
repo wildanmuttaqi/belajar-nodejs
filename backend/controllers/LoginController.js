@@ -22,7 +22,6 @@ exports.login = async (req, res) => {
   }
   const result = loginSchema.validate(req.body)
   if(result.error){
-    res.code = 422;
     res.error = result.error.details;
     rm.SendValidation(res);
     return;
@@ -58,6 +57,7 @@ exports.login = async (req, res) => {
   } catch (error) {
     res.msg = error.message;
     res.data = error;
+    res.code = 401;
     rm.SendResponse(res);
   }
 }
